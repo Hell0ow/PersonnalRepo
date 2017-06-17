@@ -6,19 +6,20 @@ public class Main {
 		
 		PopUp start = new PopUp();
 		
-		TXTfile read = new TXTfile("TXTmap/newmap.txt");
-		SQLfile add = new SQLfile("SQLmap/Valhala.sql");
+		TXTfile reader = new TXTfile("newmap.txt");
+		SQLfile writer = new SQLfile("SQLrequest.sql");
 		Database data = new Database("java", "bigouneroot");
 		
-		String ENTITYtable = Transform.addSQLentity();
-		String MAPTable = Transform.addSQLmap(start.getMapName(), read.openFile());
-		String BLOCKtable = Transform.addSQLblock(read.openFile(), data.checkIDmap());
+		String ENTITYtable = Transform.addSQLentity(reader.openFile(), data.checkIDmap());
+		String MAPTable = Transform.addSQLmap(start.getMapName(), reader.openFile());
+		String BLOCKtable = Transform.addSQLblock(reader.openFile(), data.checkIDmap());
 		
-		add.write(ENTITYtable, MAPTable, BLOCKtable);
+		writer.write(ENTITYtable, MAPTable, BLOCKtable);
 		
-		data.writeONdatabse(MAPTable);
+		/*data.writeONdatabse(MAPTable);
 		data.writeONdatabse(BLOCKtable);
-		data.closeDatabase();
+		data.writeONdatabse(ENTITYtable);
+		data.closeDatabase();*/
 		
 
 	}

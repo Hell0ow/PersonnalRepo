@@ -1,5 +1,5 @@
 INSERT INTO MAP (Name_map, Xmin_map, Xmax_map, Ymax_map, Ymin_map, nbDiamond, mapTime) VALUES 
-('Valhala', '0', '12', '0', '6', '2', '160');
+('Rochemore', '0', '12', '0', '6', '2', '160');
 
 
 

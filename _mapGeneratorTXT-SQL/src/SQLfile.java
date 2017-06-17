@@ -13,10 +13,10 @@ public class SQLfile {
 	}
 	
 	
-	public String write(String SQLlive, String SQLmap, String SQLcompose){
+	public String write(String SQLentity, String SQLmap, String SQLcompose){
 		
 		Path path = Paths.get(Folder);
-		String sql = SQLmap + SQLcompose; //ajouter entre map et compose SQLlive
+		String sql = SQLmap + SQLentity + SQLcompose;
 		
 		try {
 			Files.write(path, sql.getBytes());
