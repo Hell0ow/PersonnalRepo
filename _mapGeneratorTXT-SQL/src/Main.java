@@ -6,8 +6,8 @@ public class Main {
 		
 		PopUp start = new PopUp();
 		
-		TXTfile reader = new TXTfile("newmap.txt");
-		SQLfile writer = new SQLfile("SQLrequest.sql");
+		TXTfile reader = new TXTfile("MAP/newmap.txt");
+		SQLfile writer = new SQLfile("MAP/SQLrequest.sql");
 		Database data = new Database("java", "bigouneroot");
 		
 		String ENTITYtable = Transform.addSQLentity(reader.openFile(), data.checkIDmap());
@@ -16,10 +16,10 @@ public class Main {
 		
 		writer.write(ENTITYtable, MAPTable, BLOCKtable);
 		
-		/*data.writeONdatabse(MAPTable);
+		data.writeONdatabse(MAPTable);
 		data.writeONdatabse(BLOCKtable);
 		data.writeONdatabse(ENTITYtable);
-		data.closeDatabase();*/
+		data.closeDatabase();
 		
 
 	}

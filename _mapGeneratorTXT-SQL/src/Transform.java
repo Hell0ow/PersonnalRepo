@@ -93,7 +93,7 @@ public abstract class Transform {
 	
 	public static String addSQLentity(List<String> readTXT, int mapId){
 		
-		String sqlEntity = "\n\n\nINSERT INTO ENTITY (X_entity, Y_entity, ID_map, ID_entity) VALUES\n";
+		String sqlEntity = "\n\n\nINSERT INTO ENTITY (X_entity, Y_entity, ID_map, ID_typeEntity) VALUES\n";
 		String actualStg = new String();
 		String change = new String();
 		int ID_entity = 0;
@@ -110,11 +110,9 @@ public abstract class Transform {
 			actualStg = readTXT.get(i);
 			
 			for(int j = 0; j < actualStg.length(); j++){
-				System.out.println("OK");
 				
 				if(actualStg.charAt(j) == 'H'){
 					
-					System.out.println("OK");
 					switch(actualStg.charAt(j)){
 					case 'H':
 						ID_entity = 1;
