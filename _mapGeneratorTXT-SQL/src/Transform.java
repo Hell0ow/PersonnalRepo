@@ -4,9 +4,11 @@ import java.util.List;
 public abstract class Transform {
 	
 	
-	public static String addSQLcompose(List<String> read, String mapId){
+	public static String addSQLblock(List<String> read, int mapId){
 		
-		String sqlCompose = "\n\n\nINSERT INTO compose (X_comp, Y_comp, ID_Map, ID_Block) VALUES\n";
+		String sqlCompose = "\n\n\nINSERT INTO BLOCK (X_block, Y_block, ID_map, ID_typeBlock) VALUES\n";
+		
+		mapId++;
 		
 		List <String> result = new ArrayList<>();
 		String actualStg = new String();
@@ -42,19 +44,37 @@ public abstract class Transform {
 	
 	
 	
-	public static String addSQLmap(String mapId, String mapName){
+	public static String addSQLmap(String mapName, List <String> readTXT){
 			
-		int Xmax = 0, Ymax = 0, nbDiamond = 0;
+		int Xmax = 0, Ymax = 0, nbDiamond = 0, mapTime = 160;
+		String actualStg = new String();
+			
+		for(int i = 0; i < readTXT.size(); i++){
+					
+			actualStg = readTXT.get(i);
+			
+			for(int j =0; j <actualStg.length(); j++){
+				
+				if(actualStg.charAt(j) == '1'){
+					nbDiamond++;
+				}
+			}
+		}	
 		
-		String sqlMap = "INSERT INTO MAP(ID_Map, Name_map, Xmin_map, Xmax_map, Ymax_map, Ymin_map, mapTime) VALUES\n";
-		sqlMap += "('" + mapId + "', '" + mapName + "', '0', '" + Xmax + "', '" + Ymax + "', '0', '" + nbDiamond + "');\n";
+		
+		Xmax = readTXT.get(0).length() -1;
+		Ymax = readTXT.size() -1;		
+		
+		
+		String sqlMap = "INSERT INTO MAP (Name_map, Xmin_map, Xmax_map, Ymax_map, Ymin_map, nbDiamond, mapTime) VALUES \n";
+		sqlMap += "('" + mapName + "', '0', '" + Xmax + "', '0', '" + Ymax + "', '" + nbDiamond + "', '" + mapTime + "');\n";
 		return sqlMap;
 	}
 	
 	
-	public static String addSQLlive(){
+	public static String addSQLentity(){
 		
-		String sqlLive = "\n\n\nINSERT INTO live (X_live, Y_live, ID_map, ID_Entity) VALUES\n";
+		String sqlLive = "\n\n\nINSERT INTO ENTITY (X_entity, Y_entity, ID_map, ID_ntity) VALUES\n";
 		return sqlLive;
 	}
 	

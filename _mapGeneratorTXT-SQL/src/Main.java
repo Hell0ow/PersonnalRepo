@@ -1,18 +1,26 @@
+import java.sql.SQLException;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		
 		PopUp start = new PopUp();
 		
 		TXTfile read = new TXTfile("TXTmap/newmap.txt");
 		SQLfile add = new SQLfile("SQLmap/Valhala.sql");
+		Database data = new Database("java", "bigouneroot");
 		
-		String liveTable = Transform.addSQLlive();
-		String mapTable = Transform.addSQLmap(start.getMapID(), start.getMapName());
-		String composeTable = Transform.addSQLcompose(read.openFile(), start.getMapID());
+		String ENTITYtable = Transform.addSQLentity();
+		String MAPTable = Transform.addSQLmap(start.getMapName(), read.openFile());
+		String BLOCKtable = Transform.addSQLblock(read.openFile(), data.checkIDmap());
+		
+		add.write(ENTITYtable, MAPTable, BLOCKtable);
+		
+		data.writeONdatabse(MAPTable);
+		data.writeONdatabse(BLOCKtable);
+		data.closeDatabase();
+		
 
-		add.write(liveTable, mapTable, composeTable);
 	}
 
 }
