@@ -6,7 +6,8 @@ public abstract class Transform {
 	
 	public static String addSQLblock(List<String> read, int mapId){
 		
-		String sqlCompose = "\n\n\nINSERT INTO BLOCK (X_block, Y_block, ID_map, ID_typeBlock) VALUES\n";
+		String sqltransform = new String();
+		String returnSql = "\n\n\nINSERT INTO BLOCK (X_block, Y_block, ID_map, ID_typeBlock) VALUES\n";
 		
 		mapId++;
 		
@@ -31,7 +32,7 @@ public abstract class Transform {
 			}
 			y++;
 		}		
-		sqlCompose += result.toString() + ";";
+		sqltransform = result.toString() + ";";
 		
 		
 		
@@ -41,15 +42,22 @@ public abstract class Transform {
 		
 		// Here, we modify the unwanted characters in the sql file.
 		// These characters can be the remainder of the List/String conversion or they are the entity that are not taken into account in the BLOCK table.
-		String delete[] = {"[", "]", "H"}; //For example, H correspond to a human, what's why we replace H by 5(void block).
-		String place[] = {"", "", "5"};
+		String delete[] = {"H", "B", "F", "G", "P", "T", "A"}; //For example, H correspond to a human, what's why we replace H by 5(void block).
+		String place = "5";
 	
+		sqltransform = sqltransform.replace("[", "");
+		sqltransform = sqltransform.replace("]", "");
+		
 		for(int t = 0; t < delete.length; t++){
 	
-			sqlCompose = sqlCompose.replace(delete[t], place[t]);
+			sqltransform = sqltransform.replace(delete[t], place);
 		}		
 		
-		return sqlCompose;
+		
+		
+		returnSql += sqltransform;
+		
+		return returnSql;
 	}
 	
 	
@@ -69,7 +77,7 @@ public abstract class Transform {
 			
 			for(int j =0; j <actualStg.length(); j++){
 				
-				if(actualStg.charAt(j) == '1'){
+				if(actualStg.charAt(j) == '1' || actualStg.charAt(j) == 'P' || actualStg.charAt(j) == 'T' || actualStg.charAt(j) == 'A'){
 					nbDiamond++;
 				}
 			}
@@ -110,18 +118,37 @@ public abstract class Transform {
 			actualStg = readTXT.get(i);
 			
 			for(int j = 0; j < actualStg.length(); j++){
+					
+				switch(actualStg.charAt(j)){
+				case 'H': //Human
+					ID_entity = 1;
+					break;
+				case 'B': // BuzzBuzz (drop points)
+					ID_entity = 2;
+					break;
+				case 'F': // FlapFlap (drop points)
+					ID_entity = 4;
+					break;
+				case 'G': //GuriGuri (drop points)
+					ID_entity = 7;
+					break;
+				case 'P': // PiroPiro (drop Diamond)
+					ID_entity = 9;
+					break;
+				case 'T': // TackyTacky (drop diamond)
+					ID_entity = 10;
+					break;
+				case 'A': // Amoeba (drop diamond)
+					ID_entity = 11;
+					break;
+				}
 				
-				if(actualStg.charAt(j) == 'H'){
-					
-					switch(actualStg.charAt(j)){
-					case 'H':
-						ID_entity = 1;
-						break;
-					}
-					
+				if(ID_entity != 0){
 					change = "\n('" + j + "', '" + i + "', '" + mapId + "', '" + ID_entity +"')";
 					result.add(change);
 				}
+				ID_entity = 0;
+					
 			}
 		}
 		
