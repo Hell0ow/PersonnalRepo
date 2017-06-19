@@ -43,7 +43,7 @@ public class Database {
 	
 	
 	
-	public void writeONdatabse(String sqlRequest) throws SQLException{
+	public void writeONdatabase(String sqlRequest) throws SQLException{
 		
 		statement.executeUpdate(sqlRequest);
 		

@@ -4,7 +4,7 @@ import java.util.List;
 public abstract class Transform {
 	
 	
-	public static String addSQLblock(List<String> read, int mapId){
+	public static String addSQLblock(List<String> readTXT, int mapId){
 		
 		String sqltransform = new String();
 		String returnSql = "\n\n\nINSERT INTO BLOCK (X_block, Y_block, ID_map, ID_typeBlock) VALUES\n";
@@ -21,9 +21,9 @@ public abstract class Transform {
 		
 		
 		
-		for(int i = 0; i < read.size(); i++){
+		for(int i = 0; i < readTXT.size(); i++){
 			
-			actualStg = read.get(i);
+			actualStg = readTXT.get(i);
 			
 			for(int j =0; j <actualStg.length(); j++){
 				
@@ -66,7 +66,7 @@ public abstract class Transform {
 	
 	
 	
-	public static String addSQLmap(String mapName, List <String> readTXT){
+	public static String addSQLmap(List <String> readTXT, String mapName){
 			
 		int Xmax = 0, Ymax = 0, nbDiamond = 0, mapTime = 160;
 		String actualStg = new String();

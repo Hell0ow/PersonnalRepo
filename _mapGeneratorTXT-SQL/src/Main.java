@@ -2,25 +2,16 @@ import java.sql.SQLException;
 
 public class Main {
 
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) {
 		
-		PopUp start = new PopUp();
+		Controller start = new Controller();
 		
-		TXTfile reader = new TXTfile("MAP/newmap.txt");
-		SQLfile writer = new SQLfile("MAP/SQLrequest.sql");
-		Database data = new Database("java", "bigouneroot");
-		
-		String ENTITYtable = Transform.addSQLentity(reader.openFile(), data.checkIDmap());
-		String MAPTable = Transform.addSQLmap(start.getMapName(), reader.openFile());
-		String BLOCKtable = Transform.addSQLblock(reader.openFile(), data.checkIDmap());
-		
-		writer.write(ENTITYtable, MAPTable, BLOCKtable);
-		
-		data.writeONdatabse(MAPTable);
-		data.writeONdatabse(BLOCKtable);
-		data.writeONdatabse(ENTITYtable);
-		data.closeDatabase();
-		
+		try {
+			start.run();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
