@@ -127,19 +127,19 @@ public abstract class Transform {
 					ID_entity = 2;
 					break;
 				case 'F': // FlapFlap (drop points)
-					ID_entity = 4;
+					ID_entity = 3;
 					break;
 				case 'G': //GuriGuri (drop points)
-					ID_entity = 7;
+					ID_entity = 4;
 					break;
 				case 'P': // PiroPiro (drop Diamond)
-					ID_entity = 9;
+					ID_entity = 5;
 					break;
 				case 'T': // TackyTacky (drop diamond)
-					ID_entity = 10;
+					ID_entity = 6;
 					break;
 				case 'A': // Amoeba (drop diamond)
-					ID_entity = 11;
+					ID_entity = 7;
 					break;
 				}
 				
