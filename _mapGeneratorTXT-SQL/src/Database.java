@@ -29,7 +29,7 @@ public class Database {
 	
 	public int checkIDmap() throws SQLException{
 		
-		ResultSet result = statement.executeQuery("SELECT COUNT(ID_map) FROM MAP");
+		ResultSet result = statement.executeQuery("CALL generatorCountMap();");
 		int nbrID = 0;
 		
 		
