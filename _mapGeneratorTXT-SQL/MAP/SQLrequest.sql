@@ -1,5 +1,5 @@
-INSERT INTO MAP (Name_map, Xmin_map, Xmax_map, Ymax_map, Ymin_map, nbDiamond, mapTime) VALUES 
-('Little', '0', '3', '0', '2', '1', '160');
+INSERT INTO MAP (Name_map, Xmin_map, Xmax_map, Ymin_map, Ymax_map, nbDiamond, mapTime) VALUES 
+('olala', '0', '3', '0', '2', '1', '160');
 
 
 INSERT INTO ENTITY (X_entity, Y_entity, ID_map, ID_typeEntity) VALUES

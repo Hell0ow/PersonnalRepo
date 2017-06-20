@@ -88,7 +88,7 @@ public abstract class Transform {
 		Ymax = readTXT.size() -1;		
 		
 		
-		String sqlMap = "INSERT INTO MAP (Name_map, Xmin_map, Xmax_map, Ymax_map, Ymin_map, nbDiamond, mapTime) VALUES \n";
+		String sqlMap = "INSERT INTO MAP (Name_map, Xmin_map, Xmax_map, Ymin_map, Ymax_map, nbDiamond, mapTime) VALUES \n";
 		sqlMap += "('" + mapName + "', '0', '" + Xmax + "', '0', '" + Ymax + "', '" + nbDiamond + "', '" + mapTime + "');";
 		return sqlMap;
 	}
